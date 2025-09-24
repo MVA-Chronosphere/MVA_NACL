@@ -8,27 +8,27 @@ interface CarrotHeroProps {
 export default function CarrotHero({ className = "" }: CarrotHeroProps) {
   return (
     <motion.div 
-      className={`absolute right-0 top-1/2 transform -translate-y-1/2 pointer-events-none ${className}`}
-      initial={{ opacity: 0, x: 50, scale: 0.8 }}
+      className={`pointer-events-none ${className}`}
+      initial={{ opacity: 0, x: 100, scale: 0.8 }}
       animate={{ opacity: 1, x: 0, scale: 1 }}
-      transition={{ duration: 1.2, ease: "easeOut" }}
+      transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
       data-testid="carrot-hero"
     >
       <motion.img
         src={carrotBunchImg}
         alt="Fresh Carrots with Green Tops"
-        className="h-96 w-auto object-contain select-none"
+        className="h-[600px] w-auto object-contain select-none"
         animate={{
-          y: [-3, 3, -3],
-          rotate: [-0.5, 0.5, -0.5],
+          y: [-8, 8, -8],
+          rotate: [-1, 1, -1],
         }}
         transition={{
-          duration: 8,
+          duration: 12,
           repeat: Infinity,
           ease: "easeInOut",
         }}
         style={{
-          filter: "drop-shadow(0 10px 30px rgba(0,0,0,0.15))",
+          filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.2))",
         }}
       />
     </motion.div>

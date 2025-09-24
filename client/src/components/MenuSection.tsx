@@ -55,30 +55,69 @@ const menuCategories = [
 
 export default function MenuSection() {
   return (
-    <section id="menu" className="relative py-20 px-4 sm:px-6 lg:px-8" data-testid="menu-section">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-r from-amber-50/30 via-background to-orange-50/20" />
-      
-      {/* Carrot Hero Image positioned like Green Rebel */}
-      <div className="absolute inset-0 overflow-hidden">
-        <CarrotHero className="right-4 lg:right-16" />
+    <section id="menu" className="relative" data-testid="menu-section">
+      {/* Green Rebel Style Menu Hero Section */}
+      <div className="relative h-screen bg-amber-100 overflow-hidden">
+        {/* Background with exact Green Rebel beige color */}
+        <div className="absolute inset-0 bg-gradient-to-r from-amber-100 via-amber-50 to-orange-50" />
+        
+        {/* Left Content - Exact Green Rebel Layout */}
+        <div className="relative z-10 flex items-center h-full">
+          <div className="w-1/2 pl-16 lg:pl-24">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-6xl lg:text-7xl font-bold text-gray-800 mb-8 leading-tight" data-testid="menu-title">
+                NACL MENU
+              </h2>
+              
+              <div className="space-y-4 mb-12">
+                <p className="text-xl lg:text-2xl text-gray-700 font-medium uppercase tracking-wide">
+                  THE CHOICE IS EASY WHEN IT'S REAL FOOD.
+                </p>
+                <p className="text-xl lg:text-2xl text-gray-700 font-medium uppercase tracking-wide">
+                  EAT REAL. FEEL REAL.
+                </p>
+              </div>
+
+              <Button 
+                variant="outline"
+                size="lg"
+                className="px-8 py-4 text-lg font-medium border-2 border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white transition-all duration-300"
+                data-testid="button-discover-menu"
+              >
+                DISCOVER MENU
+              </Button>
+            </motion.div>
+          </div>
+
+          {/* Right Side - Carrot Image positioned exactly like Green Rebel */}
+          <div className="absolute right-0 top-0 w-1/2 h-full flex items-center justify-center">
+            <CarrotHero className="scale-150" />
+          </div>
+        </div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-4xl sm:text-5xl font-poppins font-bold text-foreground mb-4" data-testid="menu-title">
-            The choice is easy when it's <span className="text-primary">Real Food.</span>
-          </h2>
-          <p className="text-lg text-muted-foreground font-inter max-w-2xl mx-auto">
-            Eat real. Feel real. Every dish crafted with authentic ingredients and traditional cooking methods.
-          </p>
-        </motion.div>
+      {/* Menu Items Section with updated styling */}
+      <div className="relative py-20 px-4 sm:px-6 lg:px-8 bg-background">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-3xl sm:text-4xl font-poppins font-bold text-foreground mb-4">
+              Our Signature Dishes
+            </h3>
+            <p className="text-lg text-muted-foreground font-inter max-w-2xl mx-auto">
+              Every dish crafted with authentic ingredients and traditional cooking methods.
+            </p>
+          </motion.div>
 
         <div className="space-y-16">
           {menuCategories.map((category, categoryIndex) => (
@@ -160,6 +199,7 @@ export default function MenuSection() {
             View Full Menu
           </Button>
         </motion.div>
+        </div>
       </div>
     </section>
   );
