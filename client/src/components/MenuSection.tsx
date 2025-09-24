@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import FloatingVegetables from "./FloatingVegetables";
+import CarrotHero from "./FloatingVegetables";
 
 // todo: remove mock functionality
 const menuCategories = [
@@ -57,8 +57,12 @@ export default function MenuSection() {
   return (
     <section id="menu" className="relative py-20 px-4 sm:px-6 lg:px-8" data-testid="menu-section">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background to-accent/5" />
-      <FloatingVegetables density="low" className="opacity-30" />
+      <div className="absolute inset-0 bg-gradient-to-r from-amber-50/30 via-background to-orange-50/20" />
+      
+      {/* Carrot Hero Image positioned like Green Rebel */}
+      <div className="absolute inset-0 overflow-hidden">
+        <CarrotHero className="right-4 lg:right-16" />
+      </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
         <motion.div

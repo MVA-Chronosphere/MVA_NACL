@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import FloatingVegetables from "./FloatingVegetables";
 
 export default function Hero() {
   const scrollToMenu = () => {
@@ -14,9 +13,6 @@ export default function Hero() {
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden" data-testid="hero-section">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-primary/5 to-accent/10" />
-      
-      {/* Floating vegetables */}
-      <FloatingVegetables density="high" />
 
       {/* Content */}
       <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart, Users, Leaf, Award } from "lucide-react";
-import FloatingVegetables from "./FloatingVegetables";
 
 const features = [
   {
@@ -31,7 +30,6 @@ export default function AboutSection() {
     <section id="about" className="relative py-20 px-4 sm:px-6 lg:px-8" data-testid="about-section">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-accent/5 to-background" />
-      <FloatingVegetables density="low" className="opacity-20" />
 
       <div className="relative z-10 max-w-7xl mx-auto">
         <motion.div
