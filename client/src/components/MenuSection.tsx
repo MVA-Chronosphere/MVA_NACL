@@ -57,47 +57,70 @@ export default function MenuSection() {
   return (
     <section id="menu" className="relative" data-testid="menu-section">
       {/* Green Rebel Style Menu Hero Section */}
-      <div className="relative h-screen bg-amber-100 overflow-hidden">
-        {/* Background with exact Green Rebel beige color */}
-        <div className="absolute inset-0 bg-gradient-to-r from-amber-100 via-amber-50 to-orange-50" />
+      <div className="relative h-screen overflow-hidden" style={{ backgroundColor: "#C4A484" }}>
+        {/* Exact Green Rebel beige background */}
+        <div className="absolute inset-0" style={{ 
+          background: "linear-gradient(135deg, #C4A484 0%, #B8956F 50%, #A68660 100%)" 
+        }} />
+        
+        {/* Dark section on the right like Green Rebel */}
+        <div className="absolute right-0 top-0 w-1/3 h-full bg-gray-900" />
         
         {/* Left Content - Exact Green Rebel Layout */}
         <div className="relative z-10 flex items-center h-full">
-          <div className="w-1/2 pl-16 lg:pl-24">
+          <div className="w-2/3 pl-16 lg:pl-24 xl:pl-32">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1 }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
               viewport={{ once: true }}
             >
-              <h2 className="text-6xl lg:text-7xl font-bold text-gray-800 mb-8 leading-tight" data-testid="menu-title">
+              <motion.h2 
+                className="text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-800 mb-8 leading-none tracking-tight" 
+                data-testid="menu-title"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
                 NACL MENU
-              </h2>
+              </motion.h2>
               
-              <div className="space-y-4 mb-12">
-                <p className="text-xl lg:text-2xl text-gray-700 font-medium uppercase tracking-wide">
+              <motion.div 
+                className="space-y-2 mb-12"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.5 }}
+                viewport={{ once: true }}
+              >
+                <p className="text-lg lg:text-xl text-gray-700 font-medium uppercase tracking-wide">
                   THE CHOICE IS EASY WHEN IT'S REAL FOOD.
                 </p>
-                <p className="text-xl lg:text-2xl text-gray-700 font-medium uppercase tracking-wide">
+                <p className="text-lg lg:text-xl text-gray-700 font-medium uppercase tracking-wide">
                   EAT REAL. FEEL REAL.
                 </p>
-              </div>
+              </motion.div>
 
-              <Button 
-                variant="outline"
-                size="lg"
-                className="px-8 py-4 text-lg font-medium border-2 border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white transition-all duration-300"
-                data-testid="button-discover-menu"
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.7 }}
+                viewport={{ once: true }}
               >
-                DISCOVER MENU
-              </Button>
+                <Button 
+                  variant="outline"
+                  size="lg"
+                  className="px-8 py-4 text-lg font-medium border-2 border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white transition-all duration-300"
+                  data-testid="button-discover-menu"
+                >
+                  DISCOVER MENU
+                </Button>
+              </motion.div>
             </motion.div>
           </div>
 
-          {/* Right Side - Carrot Image positioned exactly like Green Rebel */}
-          <div className="absolute right-0 top-0 w-1/2 h-full flex items-center justify-center">
-            <CarrotHero className="scale-150" />
-          </div>
+          {/* Carrot positioned exactly like Green Rebel */}
+          <CarrotHero />
         </div>
       </div>
 
