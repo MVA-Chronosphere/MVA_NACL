@@ -3,23 +3,28 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import NotFound from "@/pages/not-found";
-import Header from "@/components/Header";
+import { Navigation } from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import MenuSection from "@/components/MenuSection";
 import AboutSection from "@/components/AboutSection";
+import BanquetHallCarousel from "@/components/BanquetHallCarousel";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import MenuPage from "@/pages/MenuPage";
 
 function HomePage() {
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main>
+    <div className="min-h-screen w-full overflow-x-hidden">
+  <Navigation />
+      <main className="w-full">
         <Hero />
         <MenuSection />
-        <AboutSection />
-        <ContactSection />
+  <AboutSection />
+  {/* Banquet Hall Carousel Section */}
+  <BanquetHallCarousel />
+  <ContactSection />
       </main>
       <Footer />
     </div>
@@ -30,6 +35,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={HomePage} />
+      <Route path="/menu" component={MenuPage} />
       <Route component={NotFound} />
     </Switch>
   );
@@ -38,12 +44,14 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <div className="font-sans antialiased">
-          <Router />
-        </div>
-        <Toaster />
-      </TooltipProvider>
+      <ThemeProvider>
+        <TooltipProvider>
+          <div className="font-sans antialiased w-full overflow-x-hidden">
+            <Router />
+          </div>
+          <Toaster />
+        </TooltipProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

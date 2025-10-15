@@ -1,6 +1,46 @@
+/* Underline animation for headings and taglines */
+.underline-animation {
+  position: relative;
+  cursor: pointer;
+}
+.underline-animation::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transition: transform 0.5s;
+}
+.underline-animation:hover::after,
+.underline-animation:focus::after {
+  transform: scaleX(1);
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Mobile viewport fixes */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Ensure proper mobile viewport handling */
+@supports (-webkit-touch-callout: none) {
+  .min-h-screen {
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* Prevent horizontal scrolling on small screens */
+* {
+  box-sizing: border-box;
+}
 
 /* LIGHT MODE */
 :root {
@@ -205,6 +245,21 @@
 
 }
 
+/* Ultra thin black scrollbar for all browsers */
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+  width: 2px;
+  background: #000;
+}
+html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
+  background: #b8956f;
+  border-radius: 6px;
+}
+
+html, body {
+  scrollbar-width: thin;
+  scrollbar-color: #b8956f #000;
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -252,9 +307,9 @@
   /* .no-default-hover-elevate/no-default-active-elevate is an escape hatch so consumers of
    * buttons/badges can remove the automatic brightness adjustment on interactions
    * and program their own. */
-  .no-default-hover-elevate {}
+  /* .no-default-hover-elevate removed: empty ruleset */
 
-  .no-default-active-elevate {}
+  /* .no-default-active-elevate removed: empty ruleset */
 
 
   /**

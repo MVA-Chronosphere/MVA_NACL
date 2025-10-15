@@ -1,32 +1,35 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
-import restaurantImg1 from "@assets/stock_images/elegant_restaurant_d_9bffdc1d.jpg";
-import restaurantImg2 from "@assets/stock_images/elegant_restaurant_d_e1ec0064.jpg";
-import kitchenImg1 from "@assets/stock_images/professional_restaur_91d562f0.jpg";
+import { useState, useEffect } from "react";
+import { useLocation } from "wouter";
+import homeFoodImg from "@/assets/homepgae food.jpg";
+import homepage1Img from "@/assets/homepage 1.jpg";
+import homepage2Img from "@/assets/homepage 2.jpg";
+import homepage3Img from "@/assets/homepage 3.png";
+import homepage4Img from "@/assets/homepage 4.jpg";
 
 const heroSlides = [
   {
-    image: restaurantImg1,
-    title: "We are not Machines.",
-    subtitle: "We are Real people.",
+    image: homepage3Img,
+    title: "Where Every Meal ",
+    subtitle: "Feels Like Home.",
     alt: "NACL Restaurant Interior"
   },
   {
-    image: kitchenImg1,
-    title: "The choice is easy when it's Real Food.",
+    image: homepage1Img,
+    title: "More Than Food, It’s a Feeling.",
     subtitle: "",
     alt: "NACL Restaurant Kitchen"
   },
   {
-    image: restaurantImg2,
-    title: "You are what you eat.",
+    image: homepage2Img,
+    title: "Taste That Touches the Soul.",
     subtitle: "",
     alt: "NACL Restaurant Dining"
   },
   {
-    image: kitchenImg1,
-    title: "Don't eat less. Just eat real.",
+    image: homepage4Img,
+    title: "A Table That Feels Like Family.",
     subtitle: "",
     alt: "NACL Restaurant Kitchen"
   }
@@ -34,13 +37,7 @@ const heroSlides = [
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  const scrollToMenu = () => {
-    const element = document.querySelector("#menu");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const [, setLocation] = useLocation();
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
@@ -50,8 +47,32 @@ export default function Hero() {
     setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
   };
 
+  // Mobile view glitch fix: force layout recalculation on mount
+  useEffect(() => {
+    if (window.innerWidth <= 768) {
+      setTimeout(() => {
+        window.scrollBy(0, 1);
+        window.scrollBy(0, -1);
+      }, 50);
+    }
+  }, []);
   return (
-    <section className="relative h-screen overflow-hidden" data-testid="hero-banner">
+    <section
+      className="relative w-full overflow-hidden"
+      data-testid="hero-banner"
+      onClick={(e) => {
+        // Prevent arrow/button/indicator clicks from triggering next slide
+        const tag = (e.target as HTMLElement).tagName.toLowerCase();
+        if (["button", "svg", "path"].includes(tag)) return;
+        nextSlide();
+      }}
+      style={{ 
+        cursor: "pointer", 
+        height: "calc(100vh - 4rem)",
+        minHeight: "500px",
+        maxHeight: "100vh"
+      }}
+    >
       {/* Background Images with Carousel */}
       {heroSlides.map((slide, index) => (
         <motion.div
@@ -67,24 +88,35 @@ export default function Hero() {
           <img 
             src={slide.image} 
             alt={slide.alt} 
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
+            style={{ 
+              width: "100%", 
+              height: "100%", 
+              minHeight: "500px",
+              maxHeight: "100vh"
+            }}
           />
           <div className="absolute inset-0 bg-black/40" />
         </motion.div>
       ))}
 
       {/* Hero Content */}
-      <div className="relative z-10 flex items-center justify-center h-full px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 flex items-center justify-center h-full px-4 sm:px-6 lg:px-8 w-full">
         <motion.div
-          className="text-center text-white max-w-4xl"
+          className="text-center text-white w-full max-w-sm xs:max-w-md sm:max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto px-2"
           key={currentSlide}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <motion.h1 
-            className="text-5xl sm:text-7xl lg:text-8xl font-poppins font-bold mb-6"
+            className="font-poppins font-bold mb-4 sm:mb-6 leading-tight break-words text-center"
             data-testid="hero-title"
+            style={{ 
+              lineHeight: '1.1', 
+              wordBreak: 'break-word',
+              fontSize: 'clamp(1.5rem, 8vw, 5rem)'
+            }}
           >
             {heroSlides[currentSlide].title.split(' ').map((word, index) => (
               <span key={index} className={
@@ -106,28 +138,12 @@ export default function Hero() {
               </>
             )}
           </motion.h1>
-
-          <motion.div
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-12"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <Button 
-              size="lg"
-              onClick={scrollToMenu}
-              className="px-10 py-4 text-lg font-inter bg-white text-black hover:bg-gray-100 transition-all duration-300"
-              data-testid="button-order-catering"
-            >
-              ORDER CATERING ONLINE
-            </Button>
-          </motion.div>
         </motion.div>
       </div>
 
-      {/* Navigation arrows like Green Rebel - functional */}
+      {/* Navigation arrows - responsive position */}
       <motion.div 
-        className="absolute left-8 top-1/2 transform -translate-y-1/2 z-20"
+        className="absolute left-2 xs:left-4 sm:left-8 top-1/2 transform -translate-y-1/2 z-20"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
@@ -145,7 +161,7 @@ export default function Hero() {
       </motion.div>
       
       <motion.div 
-        className="absolute right-8 top-1/2 transform -translate-y-1/2 z-20"
+        className="absolute right-2 xs:right-4 sm:right-8 top-1/2 transform -translate-y-1/2 z-20"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
@@ -162,13 +178,13 @@ export default function Hero() {
         </Button>
       </motion.div>
 
-      {/* Slide indicators */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+      {/* Slide indicators - responsive position */}
+      <div className="absolute bottom-4 xs:bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
         {heroSlides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            className={`w-2.5 h-2.5 xs:w-3 xs:h-3 rounded-full transition-all duration-300 ${
               index === currentSlide ? 'bg-white' : 'bg-white/50'
             }`}
             data-testid={`slide-indicator-${index}`}
