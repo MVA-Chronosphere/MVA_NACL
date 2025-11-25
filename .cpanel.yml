@@ -2,5 +2,5 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/ovc8geqrq4s4/public_html/naclburhanpur.com
-    - /bin/cp -r client/public/* $DEPLOYPATH/
+    - /bin/cp -r dist/public/* $DEPLOYPATH/
     - echo "Deployment completed successfully"
