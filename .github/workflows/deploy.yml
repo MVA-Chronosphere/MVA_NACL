@@ -1,0 +1,36 @@
+name: Build and Deploy React App to cPanel Repo
+
+on:
+  push:
+    branches:
+      - main   # change to master if needed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build React project
+        run: npm run build
+
+      - name: Push build output to cPanel Git repo
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: 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
+        with:
+          source-directory: 'build'
+          destination-github-username: 'Harshavardhan312111'
+          destination-repository-name: 'https://github.com/MVA-Chronosphere/MVA_NACL.git'
+          user-email: 'github-actions@github.com'
+          commit-message: 'Auto-update build from GitHub Actions'
