@@ -27,10 +27,10 @@ jobs:
       - name: Push build output to cPanel Git repo
         uses: cpina/github-action-push-to-another-repository@main
         env:
-          API_TOKEN_GITHUB: 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
+          API_TOKEN_GITHUB: ${{ secrets.CPANEL_REPO_TOKEN }}
         with:
           source-directory: 'build'
-          destination-github-username: 'Harshavardhan312111'
-          destination-repository-name: 'https://github.com/MVA-Chronosphere/MVA_NACL.git'
+          destination-github-username: 'MVA-Chronosphere'
+          destination-repository-name: 'MVA_NACL'
           user-email: 'github-actions@github.com'
           commit-message: 'Auto-update build from GitHub Actions'
