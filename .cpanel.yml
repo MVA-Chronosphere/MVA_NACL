@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/$CPANEL_USERNAME/public_html
+    - /bin/cp -r client/public/* $DEPLOYPATH/
+    - echo "Deployment completed successfully"
