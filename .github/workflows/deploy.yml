@@ -24,13 +24,15 @@ jobs:
       - name: Build React project
         run: npm run build
 
-      - name: Push build output to cPanel Git repo
+      - name: Push build output to deploy branch
         uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.CPANEL_REPO_TOKEN }}
         with:
           source-directory: 'dist'
-          destination-github-username: 'MVA-Chronosphere'
+          destination-github-username: 'Harshavardhan312111'
           destination-repository-name: 'MVA_NACL'
-          user-email: 'github-actions@github.com' 
-          commit-message: 'Auto-update build from GitHub Actions'
+          destination-branch: 'deploy'
+          user-email: 'github-actions@github.com'
+          commit-message: 'Auto-update build'
+
