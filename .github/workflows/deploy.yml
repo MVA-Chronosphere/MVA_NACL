@@ -32,7 +32,7 @@ jobs:
           source-directory: dist
           destination-github-username: Harshavardhan312111
           destination-repository-name: MVA_NACL
-          github-server: github.com
+          github-server: github.com 
           user-email: github-actions@github.com
           commit-message: "Auto-update build from GitHub Actions"
           target-branch: deploy
