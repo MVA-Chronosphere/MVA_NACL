@@ -1,7 +1,6 @@
 ---
 deployment:
   tasks:
-    - export SOURCEPATH=/home/ovc8geqrq4s4/repositories/MVA_NACL/public
-    - export DEPLOYPATH=/home/ovc8geqrq4s4/public_html/naclburhanpur.com
-    - /bin/rsync -avh --delete $SOURCEPATH/ $DEPLOYPATH/
+    - export DEPLOYPATH=/home/ovc8geqrq4s4/public_html/naclburhanpurbur.com
+    - /bin/rsync -avh --delete ./public/ $DEPLOYPATH/
     - echo "Deployment completed successfully"
