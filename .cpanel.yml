@@ -2,7 +2,7 @@
 deployment:
   tasks:
     - DEPLOYPATH="/home/ovc8geqrq4s4/public_html/naclburhanpur.com"
-    - REPOPATH="/home/ovc8geqrq4s4/repositories/MVA_NACL1"
-    - echo "Deploying files from $REPOPATH/public to $DEPLOYPATH"
-    - /bin/rsync -avh --delete "$REPOPATH/public/" "$DEPLOYPATH/"
+    - REPOPATH="/home/ovc8geqrq4s4/repositories/MVA_NACL"
+    - cd "$REPOPATH/public"
+    - /bin/rsync -avh --delete ./ "$DEPLOYPATH/"
     - echo "Deployment completed successfully"
