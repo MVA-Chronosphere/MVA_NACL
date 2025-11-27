@@ -11,7 +11,7 @@ import homepage4Img from "@/assets/homepage 4.jpg";
 const heroSlides = [
   {
     image: homepage3Img,
-    title: "Where Every Meal ",
+    title: "Where Every Meal  ",
     subtitle: "Feels Like Home.",
     alt: "NACL Restaurant Interior"
   },
