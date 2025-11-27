@@ -3,7 +3,7 @@ name: Build and Deploy React App to cPanel Repo
 on:
   push:
     branches:
-      - main   # change to master if needed
+      - main
 
 jobs:
   build:
@@ -29,10 +29,11 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.CPANEL_REPO_TOKEN }}
         with:
-          source-directory: 'dist'
-          destination-github-username: 'Harshavardhan312111'
-          destination-repository-name: 'MVA_NACL'
-          destination-branch: 'deploy'
-          user-email: 'github-actions@github.com'
-          commit-message: 'Auto-update build'
-
+          source-directory: dist
+          destination-repository-username: MVA-Chronosphere
+          destination-repository-name: MVA_NACL
+          target-branch: deploy
+          target-directory: dist
+          user-name: github-actions
+          user-email: github-actions@github.com
+          commit-message: "Auto-update build"
